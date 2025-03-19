@@ -57,6 +57,7 @@ The **Bank Management System (BMS)** is a **Spring Boot-based** application that
 The application is containerized using **Docker Compose**, with PostgreSQL and PgAdmin as dependencies.
 
 ### Steps to Run the Application
+**Note: Make sure Docker is up and running before executing below commands**
 
 1. **Start the Database**
    ```bash
@@ -65,8 +66,14 @@ The application is containerized using **Docker Compose**, with PostgreSQL and P
 2. **Build & Run the Spring Boot Application**
    ```bash
    mvn clean package
+   ```
+   ```bash
    docker build -t bank-management .
+    ```
+   ```bash
    docker-compose down
+   ```
+   ```bash
    docker-compose up -d
    ```
 ---
