@@ -26,6 +26,13 @@ public class AccountBalanceService {
   private final CustomerRepository customerRepository;
   private final AccountRepository accountRepository;
 
+  /**
+   * Enriches an account with balance details.
+   *
+   * @param moneyView The MoneyView object containing balance amount and currency.
+   * @param account The account to be enriched.
+   * @return The saved AccountBalance entity.
+   */
   public AccountBalance enrich(MoneyView moneyView, Account account) {
     AccountBalance accountBalance = AccountBalance.builder()
         .account(account)
@@ -35,6 +42,13 @@ public class AccountBalanceService {
     return accountBalanceRepository.save(accountBalance);
   }
 
+  /**
+   * Retrieves the exchange amount based on the given exchange balance.
+   *
+   * @param exchangeBalance The exchange balance details.
+   * @return The computed ExchangeRateBalance.
+   * @throws DataIntegrityViolationException if exchange rate is not found.
+   */
   public ExchangeRateBalance getExchangeAmount(ExchangeBalance exchangeBalance) {
     ExchangeRateId exchangeRateId = new ExchangeRateId(
         exchangeBalance.getBaseCurrency(), exchangeBalance.getTargetCurrency());

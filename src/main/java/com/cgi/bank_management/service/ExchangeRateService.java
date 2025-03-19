@@ -14,6 +14,12 @@ public class ExchangeRateService {
 
   private final ExchangeRateRepository exchangeRateRepository;
 
+  /**
+   * Creates a new exchange rate entry if it does not already exist.
+   *
+   * @param exchangeCurrencyRate The exchange rate details including base currency, target currency, and rate.
+   * @throws DataIntegrityViolationException if an exchange rate for the given currency pair already exists.
+   */
   public void create(ExchangeCurrencyRate exchangeCurrencyRate) {
     ExchangeRateId exchangeRateId = new ExchangeRateId(exchangeCurrencyRate.getBaseCurrency(),
         exchangeCurrencyRate.getTargetCurrency());

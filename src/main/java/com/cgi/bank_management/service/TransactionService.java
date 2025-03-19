@@ -16,6 +16,14 @@ public class TransactionService {
 
   private final TransactionRepository transactionRepository;
 
+  /**
+   * Creates and saves a credit transaction for the given account.
+   *
+   * @param account          The account to which the credit transaction is applied.
+   * @param currency         The currency of the transaction.
+   * @param amount           The amount to be credited.
+   * @param transactionStatus The status of the transaction.
+   */
   public void enrichCredit(Account account, Currency currency, BigDecimal amount, TransactionStatus transactionStatus) {
     Transaction creditTransaction = Transaction.builder()
         .transactionType(TransactionType.CREDIT.name())
@@ -27,6 +35,14 @@ public class TransactionService {
     transactionRepository.save(creditTransaction);
   }
 
+  /**
+   * Creates and saves a debit transaction for the given account.
+   *
+   * @param account          The account to which the debit transaction is applied.
+   * @param currency         The currency of the transaction.
+   * @param amount           The amount to be credited.
+   * @param transactionStatus The status of the transaction.
+   */
   public void enrichDebit(Account account, Currency currency, BigDecimal amount, TransactionStatus transactionStatus) {
     Transaction debitTransaction = Transaction.builder()
         .transactionType(TransactionType.DEBIT.name())

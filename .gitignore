@@ -12,6 +12,7 @@ HELP.md
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
 .postgres_data/
+target/
 # Package Files #
 *.jar
 *.war

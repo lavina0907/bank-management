@@ -28,6 +28,13 @@ public class CustomerService {
   private final TransactionService transactionService;
   private final NotificationService notificationService;
 
+  /**
+   * Creates a new customer, assigns an account, and initializes their balance.
+   *
+   * @param customerInfoDto The DTO containing customer details such as email, phone, name, and initial balance.
+   * @return The created Customer entity.
+   * @throws DataIntegrityViolationException if a customer with the given email already exists.
+   */
   @Transactional
   public Customer enrich(CustomerInfoDto customerInfoDto) {
     customerRepository.findCustomerByEmail(

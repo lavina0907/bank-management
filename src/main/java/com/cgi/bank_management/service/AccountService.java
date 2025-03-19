@@ -57,10 +57,23 @@ public class AccountService {
     }
   }
 
+  /**
+   * Creates and saves an account for the given customer.
+   *
+   * @param customer The customer for whom the account is created.
+   * @return The saved Account entity.
+   */
   public Account enrich(Customer customer) {
     return accountRepository.save(Account.builder().customer(customer).build());
   }
 
+  /**
+   * Creates a new account and initializes its balance.
+   *
+   * @param accountDto The account details including email and initial balance.
+   * @return The created Account entity.
+   * @throws DataIntegrityViolationException if the balance already exists.
+   */
   @Transactional
   public Account createAccount(@Valid AccountDto accountDto) {
     Customer customer = findCustomerByEmail(accountDto.getEmail());
@@ -86,6 +99,11 @@ public class AccountService {
     return account;
   }
 
+  /**
+   * Credits balance to an account asynchronously.
+   *
+   * @param accountDto The account and balance details.
+   */
   @Transactional
   public void creditBalance(@Valid AccountDto accountDto) {
     executorService.submit(() -> retryDeposit(accountDto, maxRetries));
@@ -118,6 +136,11 @@ public class AccountService {
             accountDto.getBalance().getAmount()));
   }
 
+  /**
+   * Debit balance to an account.
+   *
+   * @param accountDto The account and balance details.
+   */
   @Transactional
   public void debitBalance(@Valid AccountDto accountDto) {
     debitBalanceLock.lock();
@@ -171,6 +194,13 @@ public class AccountService {
                 accountDto.getBalance().getCurrency())));
   }
 
+  /**
+   * Retrieves the balance information for a given customer.
+   *
+   * @param customerEmail The customer's email.
+   * @return The balance information.
+   * @throws DataIntegrityViolationException if balance is not found.
+   */
   public BalanceInfo getBalance(CustomerEmail customerEmail) {
     Customer customer = findCustomerByEmail(customerEmail.getEmail());
     Account account = findAccountByCustomer(customer);
