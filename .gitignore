@@ -3,13 +3,15 @@
 
 # Log file
 *.log
+.gitattributes
 
 # BlueJ files
 *.ctxt
+HELP.md
 
 # Mobile Tools for Java (J2ME)
 .mtj.tmp/
-
+.postgres_data/
 # Package Files #
 *.jar
 *.war
