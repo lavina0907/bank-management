@@ -83,6 +83,10 @@ Supported Currency : EUR, USD, SEK and RUB. if you want to onboard more currenci
 ```
 http://localhost:8081/
 ```
+## Prerequisite
+
+**- Customer data required before execution of other APIs**
+- To create customer data please use create customer API : API - 1
 
 ## Endpoints
 
@@ -110,7 +114,7 @@ Creates a new customer along with an initial account balance and currency
 **Request Body (JSON): Sample**
 ```json
 {
-  "firstName": "Lavia",
+  "firstName": "Lavina",
   "lastName": "Soni",
   "email": "l.s.v3@gmail.com",
   "phone": "8010716616",
@@ -355,10 +359,7 @@ Calculates the exchange amount for a given currency conversion request.
 ```
 ---
 
-## Assumption
 
-**- Customer data required before execution of other APIs**
-- To create customer data please use create customer API : API - 1
 
 
 
