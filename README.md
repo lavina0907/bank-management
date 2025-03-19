@@ -358,6 +358,7 @@ Calculates the exchange amount for a given currency conversion request.
 ## Assumption
 
 **- Customer data required before execution of other APIs**
+- To create customer data please use create customer API : API - 1
 
 
 
